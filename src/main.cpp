@@ -3,6 +3,8 @@
 #include "geventhandler.cpp"
 #include "world.cpp"
 #include "helper.cpp"
+#include "visual.cpp"
+#include "logic.cpp"
 
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
