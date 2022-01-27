@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 #include "geventhandler.cpp"
-#include "world.cpp"
+#include "prephase.cpp"
 #include "helper.cpp"
 #include "visual.cpp"
 #include "logic.cpp"
@@ -18,9 +18,6 @@ using namespace std;
 
 int main() {
 
-
-CoreGame* obj;
-Planet Venera;
 
 if(!al_init())
     {  print_error("init error");  }
