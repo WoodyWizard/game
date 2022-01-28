@@ -19,6 +19,8 @@ using namespace std;
 int main() {
 
 
+std::unique_ptr<int> v3 = std::make_unique<int>(5);
+
 if(!al_init())
     {  print_error("init error");  }
 

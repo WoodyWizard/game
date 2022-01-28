@@ -6,29 +6,51 @@ CoreGame::CoreGame() {
 
 }
 
+void CoreGame::set_collector(unordered_map<const char*, int> local) {
+    collector = local;
+}
+
 
 unique_ptr<CoreGame> Galaxy::send_data() {
-    return std::make_unique<Galaxy>( *this ); 
+    CoreGame object;
+    collector_use();
+    object.set_collector(collector);
+    return std::make_unique<CoreGame>(object);
 }
 
 unique_ptr<CoreGame> Star::send_data()  {
-    return std::make_unique<Star>( *this ); 
+    CoreGame object;
+    collector_use();
+    object.set_collector(collector);
+    return std::make_unique<CoreGame>(object);
 }
 
 unique_ptr<CoreGame> Planet::send_data()  {
-    return std::make_unique<Planet>( *this ); 
+    CoreGame object;
+    collector_use();
+    object.set_collector(collector);
+    return std::make_unique<CoreGame>(object);
 }
 
 unique_ptr<CoreGame> Biome::send_data()  {
-    return std::make_unique<Biome>( *this ); 
+    CoreGame object;
+    collector_use();
+    object.set_collector(collector);
+    return std::make_unique<CoreGame>(object);
 }
 
 unique_ptr<CoreGame> Asteroid::send_data()  {
-    return std::make_unique<Asteroid>( *this ); 
+    CoreGame object;
+    collector_use();
+    object.set_collector(collector);
+    return std::make_unique<CoreGame>(object);
 }
 
 unique_ptr<CoreGame> Cell::send_data()  {
-    return std::make_unique<Cell>( *this ); 
+    CoreGame object;
+    collector_use();
+    object.set_collector(collector);
+    return std::make_unique<CoreGame>(object);
 }
 
 
@@ -61,29 +83,10 @@ void Cell::collector_use() {
     collector["type"] = (int)type;
 }
 
-void Galaxy::add_to_container() {
 
-}
 
-void Star::add_to_container() {
 
-}
 
-void Planet::add_to_container() {
-
-}
-
-void Biome::add_to_container() {
-
-}
-
-void Cell::add_to_container() {
-
-}
-
-void Asteroid::add_to_container() {
-
-}
 
 
 

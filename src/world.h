@@ -11,88 +11,79 @@ class CoreGame
 {
   unordered_map<const char*, int> collector;
 public:
-  virtual unique_ptr<CoreGame> send_data() = 0;
-  virtual void collector_use() = 0;
-  virtual void add_to_container() = 0;
   CoreGame();
-  virtual ~CoreGame() {};
+  void set_collector(unordered_map<const char*, int>);
 };
 
 
-class Galaxy : public CoreGame
+class Galaxy
 {
-  unordered_map<int, CoreGame*> containing;
   uint8_t type = 0;
   int stars = 0;
 public:
   unordered_map<const char*, int> collector;
-  virtual unique_ptr<CoreGame> send_data() override;
-  virtual void collector_use() override;
-  virtual void add_to_container() override;
+  unique_ptr<CoreGame> send_data();
+  void collector_use();
+  void add_to_container(unique_ptr<CoreGame> local);
 };
 
 
-class Star : public CoreGame
+class Star
 {
-  unordered_map<int, CoreGame*> containing;
   uint8_t type = 0;
   uint8_t planets = 0;
   int temperature = 0;
   int size = 0;
 public:
   unordered_map<const char*, int> collector;
-  virtual unique_ptr<CoreGame> send_data() override;
-  virtual void collector_use() override;
-  virtual void add_to_container() override;
+  unique_ptr<CoreGame> send_data();
+  void collector_use();
+  void add_to_container(unique_ptr<CoreGame> local);
 };
 
 
-class Planet : public CoreGame
+class Planet 
 {
-  unordered_map<int, CoreGame*> containing;
   uint8_t type = 0;
 public:
   unordered_map<const char*, int> collector;
-  virtual unique_ptr<CoreGame> send_data() override;
-  virtual void collector_use() override;
-  virtual void add_to_container() override;
+  unique_ptr<CoreGame> send_data();
+  void collector_use();
+  void add_to_container(unique_ptr<CoreGame> local);
 };
 
 
-class Asteroid : public CoreGame
+class Asteroid 
 {
-  unordered_map<int, CoreGame*> containing;
   uint8_t type = 0;
   int size = 0;
 public:
   unordered_map<const char*, int> collector;
-  virtual unique_ptr<CoreGame> send_data() override;
-  virtual void collector_use() override;
-  virtual void add_to_container() override;
+  unique_ptr<CoreGame> send_data();
+  void collector_use();
+  void add_to_container(unique_ptr<CoreGame> local);
 };
 
 
-class Biome : public CoreGame
+class Biome
 {
-  unordered_map<int, CoreGame*> containing;
   uint8_t type = 0;
 public:
   unordered_map<const char*, int> collector;
-  virtual unique_ptr<CoreGame> send_data() override;
-  virtual void collector_use() override;
-  virtual void add_to_container() override;
+  unique_ptr<CoreGame> send_data();
+  void collector_use();
+  void add_to_container(unique_ptr<CoreGame> local);
 };
 
 
-class Cell : public CoreGame
+class Cell 
 {
-  unordered_map<int, CoreGame*> containing;
   uint8_t type = 0;
 public:
   unordered_map<const char*, int> collector;
-  virtual unique_ptr<CoreGame> send_data() override;
-  virtual void collector_use() override;
-  virtual void add_to_container() override;
+  unique_ptr<CoreGame> send_data();
+  void collector_use();
+  void add_to_container(unique_ptr<CoreGame> local);
 };
 
 
