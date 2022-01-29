@@ -85,7 +85,101 @@ void Cell::collector_use() {
 
 
 
+void Galaxy::set_type(uint8_t object) {
+    type = object;
+}
 
+uint8_t Galaxy::get_type() {
+    return type;
+}
+
+void Galaxy::set_stars(int object) {
+    stars = object;
+}
+
+int Galaxy::get_stars() {
+    return stars;
+}
+
+void Star::set_type(uint8_t object) {
+    type = object;
+}
+
+uint8_t Star::get_type() {
+    return type;
+}
+
+void Star::set_planets(uint8_t object) {
+    planets = object;
+}
+
+uint8_t Star::get_planets() {
+    return planets;
+}
+
+void Star::set_temperature(int object) {
+    temperature = object;
+}
+
+int Star::get_temperature() {
+    return temperature;
+}
+
+void Star::set_size(int object) {
+    size = object;
+}
+
+int Star::get_size() {
+    return size;
+}
+
+void Planet::set_type(uint8_t object) {
+    type = object;
+}
+
+uint8_t Planet::get_type() {
+    return type;
+}
+
+void Asteroid::set_type(uint8_t object) {
+    type = object;
+}
+
+uint8_t Asteroid::get_type() {
+    return type;
+}
+
+void Asteroid::set_size(int object) {
+    size = object;
+}
+
+int Asteroid::get_size() {
+    return size;
+}
+
+void Biome::set_type(uint8_t object) {
+    type = object;
+}
+
+uint8_t Biome::get_type() {
+    return type;
+}
+
+void Biome::set_size(int object) {
+    size = object;
+}
+
+int Biome::get_size() {
+    return size;
+}
+
+void Cell::set_type(uint8_t object) {
+    type = object;
+}
+
+uint8_t Cell::get_type() {
+    return type;
+}
 
 
 

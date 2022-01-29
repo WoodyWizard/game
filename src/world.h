@@ -24,7 +24,12 @@ public:
   unordered_map<const char*, int> collector;
   unique_ptr<CoreGame> send_data();
   void collector_use();
-  void add_to_container(unique_ptr<CoreGame> local);
+  void add_to_container(unique_ptr<CoreGame>);
+
+  void set_type(uint8_t);
+  uint8_t get_type();
+  void set_stars(int);
+  int get_stars();
 };
 
 
@@ -39,6 +44,15 @@ public:
   unique_ptr<CoreGame> send_data();
   void collector_use();
   void add_to_container(unique_ptr<CoreGame> local);
+
+  void set_type(uint8_t);
+  uint8_t get_type();
+  void set_planets(uint8_t);
+  uint8_t get_planets();
+  void set_temperature(int);
+  int get_temperature();
+  void set_size(int);
+  int get_size();
 };
 
 
@@ -50,6 +64,9 @@ public:
   unique_ptr<CoreGame> send_data();
   void collector_use();
   void add_to_container(unique_ptr<CoreGame> local);
+
+  void set_type(uint8_t);
+  uint8_t get_type();
 };
 
 
@@ -62,17 +79,28 @@ public:
   unique_ptr<CoreGame> send_data();
   void collector_use();
   void add_to_container(unique_ptr<CoreGame> local);
+
+  void set_type(uint8_t);
+  uint8_t get_type();
+  void set_size(int);
+  int get_size();
 };
 
 
 class Biome
 {
   uint8_t type = 0;
+  int size = 0;
 public:
   unordered_map<const char*, int> collector;
   unique_ptr<CoreGame> send_data();
   void collector_use();
   void add_to_container(unique_ptr<CoreGame> local);
+
+  void set_type(uint8_t);
+  uint8_t get_type();
+  void set_size(int);
+  int get_size();
 };
 
 
@@ -84,6 +112,9 @@ public:
   unique_ptr<CoreGame> send_data();
   void collector_use();
   void add_to_container(unique_ptr<CoreGame> local);
+
+  void set_type(uint8_t);
+  uint8_t get_type();
 };
 
 

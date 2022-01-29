@@ -3,8 +3,3 @@
 
 
 
-void World::init_planet() {
-    Biome local;
-        
-    
-}
