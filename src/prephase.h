@@ -4,23 +4,31 @@
 
 
 class BiomeObject {
-    public:
+    int index = 0;
+public:
     unordered_map<int, Cell> collector;
+    void push(Cell object);
 };
 
 class PlanetObject {
-    public:
+    int index = 0;
+public:
     unordered_map<int, BiomeObject> collector;
+    void push(BiomeObject object);
 };
 
 class StarObject {
-    public:
+    int index = 0;
+public:
     unordered_map<int, PlanetObject> collector;
+    void push(PlanetObject object);
 };
 
 class GalaxyObject {
-    public:
+    int index = 0;
+public:
     unordered_map<int, StarObject> collector;
+    void push(StarObject object);
 };
 
 
@@ -30,5 +38,5 @@ class GalaxyObject {
 class WorldObject {
     GalaxyObject one;
 public:
-
+    WorldObject();
 };
