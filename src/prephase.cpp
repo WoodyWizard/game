@@ -23,27 +23,68 @@ void BiomeObject::push(Cell object) {
 }
 
 
+
+
+
+
+
+    BiomeObject  WorldObject::generate_b(const int RANGE) {
+        BiomeObject biome;
+        for(int c = 0; c < RANGE; c++) { // cells
+            Cell local1;
+            biome.collector[c] = local1;
+        }
+    return biome;
+    }
+
+
+
+    PlanetObject WorldObject::generate_p(const uint8_t n_biomes, const int n_cells) {
+        PlanetObject planet;
+        for(int c = 0; c < n_biomes; c++) { // biomes
+            planet.collector[c] = generate_b(n_cells);
+        }
+    return planet;
+    }
+
+
+
+    StarObject   WorldObject::generate_s(const uint8_t n_planets, const uint8_t n_biomes, const int n_cells) {
+        StarObject star;
+        for(int c = 0; c < n_planets; c++) { // Planets
+            star.collector[c] = generate_p(n_biomes, n_cells);
+        }
+        std::cout << "Star generated " << std::endl;
+    return star;
+    }
+
+
+
+
+
+
 WorldObject::WorldObject() {
-    std::vector<PlanetObject> oneP;
-    std::vector<BiomeObject> oneB;
+
+    int stars = 100;
+    std::vector<std::thread> threads;
     std::vector<StarObject> oneS;
 
-    for(int star = 0; star < 100; star++) { // stars
-        StarObject localStar;
-        for(int i = 0; i < 10; i++) { // planets
-            PlanetObject localPlanet;
-            for(int b = 0; b < 10; b++) { // biome
-                BiomeObject localBiome;
-                for(int c = 0; c < 100000; c++) { // cells
-                    Cell local1;
-                    localBiome.collector[b] = local1;
-                }
-            localPlanet.collector[b] = localBiome;
+
+
+    for (int i = 0; i < 12; i++) {
+        threads.push_back( std::thread{[&] {
+                oneS.push_back(generate_s(10, 10, 100000));
             }
-        localStar.collector[i] = localPlanet;
-        std::cout << "Planets for Star " << star << " and Planet with number " << i << " generated " << std::endl;
-        }
-        oneS.push_back(localStar);
-        std::cout << "Star " << star << " generated" << std::endl;
+        });
+    std::cout << "i: " << i << std::endl;
     }
+
+    
+    for (auto &th : threads) {
+        th.join();
+        std::cout << "waiting" << std::endl;
+    }
+
+
+    std::cout << oneS.size() << " Size of ONES" << std::endl;
 }

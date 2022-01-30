@@ -1,6 +1,8 @@
-#include <iostream>
-#include <memory>
+
+#ifndef GH
 #include "geventhandler.cpp"
+#endif
+
 #include "prephase.cpp"
 #include "helper.cpp"
 #include "visual.cpp"
@@ -19,7 +21,12 @@ using namespace std;
 int main() {
 
 
+
 std::unique_ptr<int> v3 = std::make_unique<int>(5);
+
+GHandler general;
+
+std::cout << "Number of system threads " << general.get_proc_count() << std::endl;
 
 WorldObject world;
 
