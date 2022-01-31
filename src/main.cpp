@@ -85,7 +85,7 @@ if(!al_init())
         {
             al_clear_to_color(al_map_rgb(0, 0, 0));
             al_draw_text(font, al_map_rgb(255, 255, 255), 0, 0, 0, "Hello world!");
-			al_draw_filled_rectangle(50.0,50.0, 150.0, 150.0, al_map_rgb(150,200,150));
+			al_draw_filled_rectangle(50.0,50.0, 150.0, 150.0, al_map_rgb(0,200,150));
             al_flip_display();
 
             redraw = false;

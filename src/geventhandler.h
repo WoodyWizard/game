@@ -5,6 +5,10 @@
 #include <iostream>
 #include <thread>
 #include <future>
+#include <fstream>
+#include "ZipLib/ZipFile.h"
+#include "ZipLib/streams/memstream.h"
+#include "ZipLib/methods/Bzip2Method.h"
 
 #define GH
 

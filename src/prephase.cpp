@@ -25,6 +25,31 @@ void BiomeObject::push(Cell object) {
 
 
 
+void GalaxyObject::push_container(Star object) {
+    containing[index] = object;
+    stars += 1;
+}
+
+void StarObject::push_container(Planet object) {
+    containing[index] = object;
+    planets += 1;
+}
+
+void PlanetObject::push_container(Biome object) {
+    containing[index] = object;
+    biomes += 1;
+}
+
+
+void GalaxyObject::set_stars(int number) {
+    stars = number;
+}
+
+int GalaxyObject::get_stars() {
+    return stars;
+}
+
+
 
 
 
@@ -60,31 +85,82 @@ void BiomeObject::push(Cell object) {
 
 
 
+    void WorldObject::generate_cache_b(const int RANGE) {
+        ofstream myfile;
+        int localindex = planet_index;
+        planet_index += 1;
+        std::string filename = "data/Planet" + to_string(localindex);
+        myfile.open (filename);
+
+        for(int c = 0; c < RANGE; c++) { // cells
+            Cell local1;
+            std::string data = " {  cell :| "s + to_string(c) + " | type :| "s + to_string(local1.get_type()) + " | }; \n"s;
+            myfile << data;
+        }
+
+        myfile.close();
+    }
+
+
+    void WorldObject::generate_star_system(const u_int8_t type, const u_int8_t n_planets , const int RANGE) {
+
+        Star systemStar;
+        std::vector<std::thread> threads;
+        std::string zipName = "data/StarSystem" + to_string(one.get_stars()) + ".zip";
+
+        one.set_stars(one.get_stars() + 1);
+
+        for (int i = 0; i < n_planets; i++) {
+            threads.push_back( std::thread{[&] {
+                    generate_cache_b(RANGE);
+                }
+            });
+        }
+
+        for (auto &th : threads) {
+            th.join();
+            std::cout << "waiting for stop" << std::endl;
+        }
+
+        ZipArchive::Ptr archive = ZipFile::Open(zipName);
+        
+
+        for (int i = 0; i < n_planets; i++) {
+
+            std::string planetsName = "data/Planet" + to_string(i);
+            ZipArchiveEntry::Ptr entry = archive->CreateEntry(planetsName);
+            assert(entry != nullptr);
+            
+            std::ifstream contentStream;
+            contentStream.open(planetsName, std::ios::binary);
+            assert(contentStream.is_open());
+            DeflateMethod::Ptr ctx = DeflateMethod::Create();
+            ctx->SetCompressionLevel(DeflateMethod::CompressionLevel::L1);
+
+            entry->SetCompressionStream(   // data from contentStream are pumped here
+                contentStream,
+                ctx,
+                ZipArchiveEntry::CompressionMode::Immediate
+                );
+
+            std::cout << planetsName << " planet added " << std::endl;
+
+        }
+
+        ZipFile::SaveAndClose(archive, zipName);
+    }
+
 
 
 
 WorldObject::WorldObject() {
 
-    int stars = 100;
     std::vector<std::thread> threads;
-    std::vector<StarObject> oneS;
+    PlanetObject currentPlanet;
+    StarObject startStar;
 
+    currentPlanet = generate_p(1, 3000000);
 
+    generate_star_system(1, 5, 100000);
 
-    for (int i = 0; i < 12; i++) {
-        threads.push_back( std::thread{[&] {
-                oneS.push_back(generate_s(10, 10, 100000));
-            }
-        });
-    std::cout << "i: " << i << std::endl;
-    }
-
-    
-    for (auto &th : threads) {
-        th.join();
-        std::cout << "waiting" << std::endl;
-    }
-
-
-    std::cout << oneS.size() << " Size of ONES" << std::endl;
 }
