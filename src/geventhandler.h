@@ -9,6 +9,7 @@
 #include "ZipLib/ZipFile.h"
 #include "ZipLib/streams/memstream.h"
 #include "ZipLib/methods/Bzip2Method.h"
+#include <filesystem>
 
 #define GH
 

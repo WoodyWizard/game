@@ -107,6 +107,7 @@ int GalaxyObject::get_stars() {
         Star systemStar;
         std::vector<std::thread> threads;
         std::string zipName = "data/StarSystem" + to_string(one.get_stars()) + ".zip";
+        std::filesystem::remove(zipName);
 
         one.set_stars(one.get_stars() + 1);
 
@@ -144,7 +145,7 @@ int GalaxyObject::get_stars() {
                 );
 
             std::cout << planetsName << " planet added " << std::endl;
-
+            std::filesystem::remove(planetsName);
         }
 
         ZipFile::SaveAndClose(archive, zipName);
